@@ -1,52 +1,52 @@
-Aashray – MERN NGO Management System
+🌟 Aashray – MERN NGO Management System
 
 Aashray is a full-stack MERN (MongoDB, Express, React, Node) application designed for NGOs to manage projects, donations, volunteers, and admin operations.
 
-Features
+🚀 Features
+👥 User Features
 
-USER FEATURES
+📌 View all NGO projects
 
-View all NGO projects
+❤️ Donate to any project
 
-Donate to any project
+🙋 Register as volunteer
 
-Register as volunteer
+💬 Contact / support page
 
-Contact / support page
+🔐 Admin Features
 
-ADMIN FEATURES
+🔑 Admin login (JWT Authentication)
 
-Admin login using JWT authentication
+📂 Create, update, delete projects
 
-Create, update and delete projects
+🧑‍🤝‍🧑 Manage volunteers
 
-Manage volunteers
+💵 View all donations
 
-View all donations
+📊 Dashboard with statistics
 
-Dashboard with statistics
-
-Project Structure
-
+📁 Project Structure
 Aashray/
-backend/
-models/
-routes/
-server.js
-.env
-package.json
-frontend/
-src/
-public/
-package.json
+  backend/
+    models/
+    routes/
+    server.js
+    .env
+    package.json
+  frontend/
+    src/
+    public/
+    package.json
 
-Tech Stack
+🛠️ Tech Stack
 
 Frontend: React.js, Axios, React Router
+
 Backend: Node.js, Express.js, MongoDB, Mongoose, JWT
+
 Database: MongoDB / MongoDB Atlas
 
-Backend Setup
+⚙️ Backend Setup
 
 Open terminal and go to backend folder:
 cd backend
@@ -55,14 +55,16 @@ Install dependencies:
 npm install
 
 Create .env file with:
+
 MONGO_URI=your_mongodb_url
 JWT_SECRET=your_secret_key
 PORT=5000
 
+
 Start backend:
 node server.js
 
-Frontend Setup
+🌐 Frontend Setup
 
 Go to frontend folder:
 cd frontend
@@ -73,44 +75,53 @@ npm install
 Start frontend:
 npm start
 
-API Endpoints
+🔗 API Endpoints
+📂 Projects
 
-Projects:
 GET /projects
+
 POST /projects
+
 GET /projects/:id
+
 PUT /projects/:id
+
 DELETE /projects/:id
 
-Donations:
+💰 Donations
+
 POST /donations
+
 GET /donations
 
-Volunteers:
+🙋 Volunteers
+
 POST /volunteers
+
 GET /volunteers
 
-Auth:
+🔑 Auth
+
 POST /auth/login
 
-Admin Login System
+🔒 Admin Login System
 
-Admin login is handled using:
+Admin login includes:
 
 Email and password
 
-JWT token stored in frontend
+JWT token stored on frontend
 
-Access control for admin routes
+Protected admin routes
 
-Future Improvements
+🚧 Future Improvements
 
-Payment gateway (Razorpay/Stripe)
+💳 Payment gateway (Razorpay/Stripe)
 
-Multi-admin support
+👥 Multi-admin support
 
-Event registration system
+📅 Event registration system
 
-Automatic donation receipts
+🧾 Automatic donation receipts
 
-Newsletter & email system
+📨 Newsletter and email system
