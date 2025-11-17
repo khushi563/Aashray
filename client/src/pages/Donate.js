@@ -45,7 +45,7 @@ export default function Donate() {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/donations", {
+      const res = await fetch("https://aashray-backend-ks3p.onrender.com/api/donations", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
