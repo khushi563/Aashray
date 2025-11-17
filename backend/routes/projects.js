@@ -2,16 +2,24 @@ const express = require("express");
 const router = express.Router();
 const Project = require("../models/Project"); 
 
-
 const slugify = (text) => {
   return text.toString().toLowerCase()
-    .replace(/\s+/g, '-')      
-    .replace(/[^\w-]+/g, '')    
-    .replace(/--+/g, '-')     
-    .replace(/^-+/, '')        
-    .replace(/-+$/, '');       
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]+/g, '')
+    .replace(/--+/g, '-')
+    .replace(/^-+/, '')
+    .replace(/-+$/, '');
 };
 
+router.get("/public/active", async (req, res) => {
+  try {
+    const projects = await Project.find({ active: true }).sort({ createdAt: -1 });
+    res.json(projects);
+  } catch (err) {
+    console.error("Error fetching active projects:", err);
+    res.status(500).json({ error: "Server error" });
+  }
+});
 
 router.post("/", async (req, res) => {
   try {
@@ -26,11 +34,11 @@ router.post("/", async (req, res) => {
       summary,
       content: content || "",
       goal: Number(goal),
-      active: active || false, 
+      active: active || false,
       images: images || [],
       raised: 0
     });
-    
+
     await project.save();
     res.status(201).json(project);
   } catch (err) {
@@ -43,10 +51,10 @@ router.post("/", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const projects = await Project.find().sort({ createdAt: -1 });
-    res.json(projects); 
+    res.json(projects);
   } catch (err) {
     console.error("Error fetching projects:", err);
-    res.status(500).json({ error: "Server error while fetching projects" });
+    res.status(500).json({ error: "Server error" });
   }
 });
 
@@ -58,7 +66,7 @@ router.get("/:id", async (req, res) => {
     res.json(project);
   } catch (err) {
     console.error("Error fetching project:", err);
-    res.status(500).json({ error: "Server error while fetching project" });
+    res.status(500).json({ error: "Server error" });
   }
 });
 
@@ -79,10 +87,10 @@ router.put("/:id", async (req, res) => {
     if (active !== undefined) projectFields.active = active;
     if (images) projectFields.images = images;
 
-    let project = await Project.findByIdAndUpdate(
+    const project = await Project.findByIdAndUpdate(
       req.params.id,
       { $set: projectFields },
-      { new: true } 
+      { new: true }
     );
 
     if (!project) return res.status(404).json({ error: "Project not found" });
@@ -103,18 +111,6 @@ router.delete("/:id", async (req, res) => {
     res.json({ msg: "Project removed successfully" });
   } catch (err) {
     console.error("Error deleting project:", err);
-    res.status(500).json({ error: "Server error" });
-  }
-});
-
-
-
-router.get("/public/active", async (req, res) => {
-  try {
-    const projects = await Project.find({ active: true }).sort({ createdAt: -1 });
-    res.json(projects);
-  } catch (err) {
-    console.error("Error fetching active projects:", err);
     res.status(500).json({ error: "Server error" });
   }
 });
